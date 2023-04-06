@@ -29,7 +29,6 @@
       add_ldflags("-L/xxx", "-lxxx") --添加静态链接参数，静态和动态公用
       add_arflags("xxx") --影响静态库链接参数
       add_shflags("xxx") --动态库链接参数
-  
   target_end()
   ```
 
@@ -51,7 +50,9 @@
         set_options("hello")
     ```
   
-  - 使用`set_toolchains`设置和切换整个工具链，如果需要单独设置可以通过`set_toolset()`来对每个target的工具链中的特定工具单独设置，大型工具链一般是整体切换。
+  - 使用`set_toolchains()`设置和切换整个工具链，如果需要单独设置可以通过`set_toolset()`来对每个target的工具链中的特定工具单独设置，大型工具链一般是整体切换。
+    
+    下面的例子是可以创建使用不同工具链的target，生成不同的目标文件
     
     ```lua
     target("test1")
@@ -62,13 +63,17 @@
         set_toolset("cc", "$(projectdir)/tools/bin/clang-5.0")
     ```
     
+    使用`xmake f --toolchain=armcc`需要将armcc编译器添加到环境变量中
+    
+    查看xmake支持的工具链使用`xmake show -l toolchains`
+    
     定制化工具链,可以借鉴stm32工程的xmake.lua
     
-    默认使用cc进行编译，ld进行链接，as进行汇编
+    默认使用cc进行编译，ld进行链接，as进行汇编，使用set_toolset()可以定制不同阶段使用的工具
     
     ```lua
     toolchain("myclang")
-        set_kind("standalone")
+        set_kind("standalone")--表示这是完整的工具链
         set_toolset("cc", "clang")
         set_toolset("cxx", "clang", "clang++")
         set_toolset("ld", "clang++", "clang")
@@ -79,4 +84,7 @@
         set_toolset("mm", "clang")
         set_toolset("mxx", "clang", "clang++")
         set_toolset("as", "clang")
+    toolchain_end()
+    target("mytarget")
+        set_toolchains("myclang")--将工具链设置成myclang
     ```

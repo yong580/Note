@@ -536,7 +536,7 @@ vim插件网站：https://vimawesome.com
   
   全选并复制：ctrl+a
   
-  格式化代码：leader+s
+  格式化代码：leader+
   
   退出调试窗口：leader+r
   
@@ -552,13 +552,15 @@ vim插件网站：https://vimawesome.com
   
   2. 使用F9打断点
   
-  3. F5运行层序
+  3. F5运行程序
   
   4. ctrl+w 再加hjkl跳转分块窗口，布局和vscode一致，快捷键也和vscode一致
   
-  5. F10是单步跳过函数，F11是步进函数（shift+F11是跳出函数）
+  5. 使用`:resize +/-num`可以对当前窗口大小进行调整
   
-  6. **调试多进程多线程程序的方法**
+  6. F10是单步跳过函数，F11是步进函数（shift+F11是跳出函数）
+  
+  7. **调试多进程多线程程序的方法**
      
      还是使用gdb吧，即使使用vscode也是配置gdb命令进入子进程逻辑。
 
@@ -586,7 +588,7 @@ vim插件网站：https://vimawesome.com
   
   表示定义个3个光标跳转的位置，冒号后面是该变量一开始的初值$+数字 表示取变量值，且会跟着变量变化。
 
-- coc的使用
+- coc的使用 遇到不知道的命令和设置使用 `:h 命令`
   
   ```
   ：help coc-nvim  可以查看帮助，各种配置命令的作用
@@ -601,33 +603,39 @@ vim插件网站：https://vimawesome.com
   
   2. 空格+“-”跳转到下一个错误
   
-  3. g+d跳转到函数定义
+  3. space + d 显示所有的错误
   
-  4. ctrl+o进行跳回
+  4. g+d跳转到函数定义
   
-  5. 空格+“qf”根据提示进行修改错误
+  5. ctrl+o进行跳回
   
-  6. ctrl+j补全函数后跳转到下一个参数
+  6. 空格+“qf”根据提示进行修改错误
   
-  7. ctrl+space是随时显示自动补全
+  7. ctrl+j补全函数后跳转到下一个参数
   
-  8. ![1650990409407](Linux基础学习笔记.assets/1650990409407.png)
-     
-     使用gD找到定义并显示在新文件中。
+  8. ctrl+space是随时显示自动补全
   
-  9. 对于大型项目可能会出现找不到头文件，有cmake文件或者makefile文件，只需在其目录下建一个 .vscode文件，然后执行下面语句生成一个 compile_commands.json在.vscode中，把头文件都包含进来了
-     
-     针对含有makefile文件的需要使用bear工具生成一个 compile_commands.json文件在 .vscode文件夹下。
-     
-     -C 是用于指定生成的路径![1650989451866](Linux基础学习笔记.assets/1650989451866.png)
-     
-     ![1650987593954](Linux基础学习笔记.assets/1650987593954.png)
+  9. 空格+rr，快速重命名函数和变量使用
+  
+  10. 空格+rn，快速批量修改任意相同的
+  
+  11. ![1650990409407](Linux基础学习笔记.assets/1650990409407.png)
+      
+      使用gD找到定义并显示在新文件中。
+  
+  12. 对于大型项目可能会出现找不到头文件，有cmake文件或者makefile文件，只需在其目录下建一个 .vscode文件，然后执行下面语句生成一个 compile_commands.json在.vscode中，把头文件都包含进来了
+      
+      针对含有makefile文件的需要使用bear工具生成一个 compile_commands.json文件在 .vscode文件夹下。
+      
+      -C 是用于指定makefile的路径`bear -vvvv make -C makefile_path`
+      
+      ![1650987593954](Linux基础学习笔记.assets/1650987593954.png)
 
 - 通过文件树打开多个文件后，想来回切换文件使用如下命令
   
   ![1650989947310](Linux基础学习笔记.assets/1650989947310.png)
-  
-  ​
+
+- 使用CocList extensions 查看coc安装的扩展，选择对应的扩展按tab可以进行操作，并可以对插件在配置文件中进行配置，在里面上下移动使用`ctrl+j\k`
 
 - Linux下vscode的c++的配置参考：[Get Started with C++ on Linux in Visual Studio Code](https://code.visualstudio.com/docs/cpp/config-linux)
   
@@ -738,6 +746,24 @@ vim插件网站：https://vimawesome.com
 - ctrl+v实现块可视化，选择要操作的块，并将光标停在需要更改的列，shift+i后输入要插入的字符
   
   或者删除几个列
+
+- 多行编辑插件`Plug 'mg979/vim-visual-multi', {'branch': 'master'}`
+  
+  - 使用 Ctrl-N 选择单词（如 Sublime Text/VS Code 中的 Ctrl-d）
+  
+  - 使用 Ctrl-Down/Ctrl-Up 垂直创建光标
+  
+  - 使用[移动箭头](https://www.zhihu.com/search?q=%E7%A7%BB%E5%8A%A8%E7%AE%AD%E5%A4%B4&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22%3A%22answer%22%2C%22sourceId%22%3A2570066294%7D)一次选择一个字符
+  
+  - 按 n/N 可获取下一个/上一个匹配项
+  
+  - 按 [/] 选择下一个/上一个光标
+  
+  - 按 q 跳过当前并获取下一个匹配项
+  
+  - 按 Q 键删除当前光标/选区
+  
+  - 使用 i，a，I，A 启动插入模式
 
 ### 10、撤销操作
 
@@ -1016,13 +1042,13 @@ vim插件网站：https://vimawesome.com
   
   ​    %.o:%.c
   
-  ​        gcc -c  $<   -o  %@
+  ​        gcc -c  $<   -o  \$@
   
   静态模式规则：
   
   ​    表示下面的两个百分号是取自目标$(obj)，并执行依次使用.c生成.o
   
-  ​    $(obj):%.o:%==.c==
+  ​    $(obj):%.o:%.c
   
   ​        gcc -c  \$<   -o  $@
   
@@ -1083,8 +1109,28 @@ vim插件网站：https://vimawesome.com
 - ?=   :就是如果当前这个变量之前没有被赋值，就按等号后面的值给它赋值，如果之前赋值了，这个等号作废。
 
 - +=  ：就是在此变量后面拼接字符上去。
+
+### 3、构建makefile思路
+
+- 在生成.o前处理好.d文件，在生成.o时将对应的.d也作为目标，这样每次在更新目标时会更新头文件依赖信息，即更新.d文件
   
-  # Linux基础学习day4
+  ```makefile
+  seq.o seq.d : seq.c seq.h
+  ```
+  
+  ```makefile
+  %.d: %.c 
+      @set -e; rm -f $@; \
+      $(CC) -M $(CPPFLAGS) $< > $@.$$$$; \ 
+      sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+      rm -f $@.$$$$
+  ```
+  
+  根据依赖(.c文件)生成.d，执行`(CC) -M (CPPFLAGS) < > @.$$$$;`生成一个临时的.d文件，并进行处理成`seq.o seq.d : seq.c seq.h`这样的形式，把依赖文件(.d文件)也加入到目标文件中。最后将临时文件进行删除
+
+- makefile在确定文件的依赖时可以没有先后顺序，根据依赖关系如果目标落后于依赖，就会将目标重新生成
+
+# Linux基础学习day4
 
 ## 1、文件IO
 
